@@ -5,6 +5,7 @@ function Rover() {
   this.position = [0, 0];
   this.bearing = "N";
   this.record = [];
+  const bearingsWheel = ["N", "E", "S", "W"];
 
   this.commandBot = (command) => {
     this.record.push(command);
@@ -18,7 +19,7 @@ function Rover() {
       this.position = [command.split(" ")[0], command.split(" ")[1]];
       this.bearing = command.split(" ")[2];
       console.log("    rebase -> " + this.position + " " + this.bearing + " ");
-      
+
     } else if (this.record.length > 2) {
       console.log("  --> " + command);
       command.split("").forEach((direction) => this.action(direction));
@@ -49,36 +50,12 @@ function Rover() {
       }
     }
     if (action === "L") {
-      switch (this.bearing) {
-        case "N":
-          this.bearing = "W";
-          break;
-        case "E":
-          this.bearing = "N";
-          break;
-        case "S":
-          this.bearing = "E";
-          break;
-        case "W":
-          this.bearing = "S";
-          break;
-      }
+      let bearingIndex = bearingsWheel.findIndex(currentBearing => this.bearing === currentBearing);
+      this.bearing = bearingIndex === 0 ? bearingsWheel[bearingsWheel.length-1] : bearingsWheel[bearingIndex-1];
     }
     if (action === "R") {
-      switch (this.bearing) {
-        case "N":
-          this.bearing = "E";
-          break;
-        case "E":
-          this.bearing = "S";
-          break;
-        case "S":
-          this.bearing = "W";
-          break;
-        case "W":
-          this.bearing = "N";
-          break;
-      }
+      let bearingIndex = bearingsWheel.findIndex(currentBearing => this.bearing === currentBearing);
+      this.bearing = bearingIndex === bearingsWheel.length-1 ? bearingsWheel[0] : bearingsWheel[bearingIndex+1];
     }
   };
 
