@@ -1,0 +1,20 @@
+{
+  "name": "mars-mission",
+  "version": "1.0.0",
+  "lockfileVersion": 2,
+  "requires": true,
+  "author": "",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "main": "control.js",
+  "packages": {},
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "jest": "^25.2.4"
+  },
+  "scripts": {
+    "eslint": "eslint ./",
+    "test": "jest"
+  }
+}
