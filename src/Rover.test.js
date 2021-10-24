@@ -1,9 +1,8 @@
-const {Rover} = require('./Rover')
+const { Rover } = require("./Rover");
 
 let bot;
 
 describe("Rover initiation", () => {
-  
   test("initiate and setup map limit", () => {
     bot = new Rover();
     const orders = ["5 5"];
@@ -18,7 +17,6 @@ describe("Rover initiation", () => {
     bot.commandBot(orders.shift()); //mock
     bot.commandBot(orders.shift()); //mock
   });
-
 });
 
 describe("Rover full simple tests", () => {
@@ -29,9 +27,8 @@ describe("Rover full simple tests", () => {
 
     bot.commandBot(orders.shift());
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(reported);
+    expect(bot.commandBot(orders.shift())).toBe(reported);
   });
-
 });
 
 describe("Rover full single tests", () => {
@@ -42,7 +39,7 @@ describe("Rover full single tests", () => {
 
     bot.commandBot(orders.shift());
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(reported);
+    expect(bot.commandBot(orders.shift())).toBe(reported);
   });
 
   test("initiate and run full example sequence", () => {
@@ -52,12 +49,11 @@ describe("Rover full single tests", () => {
 
     bot.commandBot(orders.shift());
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(reported);
+    expect(bot.commandBot(orders.shift())).toBe(reported);
   });
 });
 
 describe("Rover full multi commands ", () => {
-
   test("initiate and run double example sequence", () => {
     bot = new Rover();
     const orders = ["5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"];
@@ -66,9 +62,9 @@ describe("Rover full multi commands ", () => {
 
     bot.commandBot(orders.shift());
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(reported_first);
+    expect(bot.commandBot(orders.shift())).toBe(reported_first);
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(reported_second);
+    expect(bot.commandBot(orders.shift())).toBe(reported_second);
   });
 
   test("initiate and run 5 sequences", () => {
@@ -78,20 +74,19 @@ describe("Rover full multi commands ", () => {
 
     bot.commandBot(orders.shift());
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(results_expected[0]);
+    expect(bot.commandBot(orders.shift())).toBe(results_expected[0]);
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(results_expected[1]);
+    expect(bot.commandBot(orders.shift())).toBe(results_expected[1]);
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(results_expected[2]);
+    expect(bot.commandBot(orders.shift())).toBe(results_expected[2]);
     bot.commandBot(orders.shift());
-    expect( bot.commandBot( orders.shift()) ).toBe(results_expected[3]);
+    expect(bot.commandBot(orders.shift())).toBe(results_expected[3]);
   });
 
-// Validation
-// order of commands
-// - numbers, bearings
+  // Validation
+  // order of commands
+  // - numbers, bearings
 
   // Edge Cases
   // - go out of bounds
-  
 });
