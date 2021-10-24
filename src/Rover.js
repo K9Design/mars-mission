@@ -17,13 +17,10 @@ function Rover() {
     //actions
     if (this.record.length > 2) {
       command.split("").forEach((direction) => this.action(direction));
-      return "test";//this.position[0] + " " + this.position[1] + " " + this.bearing
+      return this.position[0] + " " + this.position[1] + " " + this.bearing
     }
-    //5 5
-    // 1 2 N
-    // LMLMLMLMM
-    // -> 3 3 E
-    return "";
+
+    return null;
   };
 
   this.action = (action) => {

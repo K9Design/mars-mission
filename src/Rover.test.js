@@ -10,8 +10,8 @@ describe("Rover initiation test", () => {
     const orders = ["5 5", "1 2 N", "LMLMLMLMM"];
     const reported = "3 3 E";
 
-    expect( bot.commandBot(orders.shift()) ).toBe("");
-    expect( bot.commandBot(orders.shift()) ).toBe("");
+    expect( bot.commandBot(orders.shift()) ).toBe(null);
+    expect( bot.commandBot(orders.shift()) ).toBe(null);
     expect( bot.commandBot(orders.shift()) ).toBe(reported);
   });
 
