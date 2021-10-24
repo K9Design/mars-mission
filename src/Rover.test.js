@@ -2,7 +2,7 @@ const {Rover} = require('./Rover')
 
 let bot;
 
-describe("Rover initiation", () => {
+xdescribe("Rover initiation", () => {
   
   test("initiate and setup map limit", () => {
     bot = new Rover();
@@ -21,7 +21,7 @@ describe("Rover initiation", () => {
 
 });
 
-describe("Rover full simple tests", () => {
+xdescribe("Rover full simple tests", () => {
   test("initiate and run sequence", () => {
     bot = new Rover();
     const orders = ["5 5", "0 0 N", "M"];
@@ -34,7 +34,7 @@ describe("Rover full simple tests", () => {
 
 });
 
-describe("Rover full tests", () => {
+xdescribe("Rover full single tests", () => {
   test("initiate and run full example sequence", () => {
     bot = new Rover();
     const orders = ["5 5", "1 2 N", "LMLMLMLMM"];
@@ -53,5 +53,21 @@ describe("Rover full tests", () => {
     bot.commandBot(orders.shift());
     bot.commandBot(orders.shift());
     expect( bot.commandBot( orders.shift()) ).toBe(reported);
+  });
+});
+
+describe("Rover full multi commands ", () => {
+
+  test("initiate and run double example sequence", () => {
+    bot = new Rover();
+    const orders = ["5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM"];
+    const reported_first = "1 3 N";
+    const reported_second = "5 1 E";
+
+    bot.commandBot(orders.shift());
+    bot.commandBot(orders.shift());
+    expect( bot.commandBot( orders.shift()) ).toBe(reported_first);
+    bot.commandBot(orders.shift());
+    expect( bot.commandBot( orders.shift()) ).toBe(reported_second);
   });
 });
