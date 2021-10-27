@@ -1,21 +1,28 @@
 # Rover - Mars Mission
 
+By Hagen L
 
-### Instructions
+### Approach: 
+In this project I tried a TDD approach, which went sideways as soon as I had it planned on paper. After spending some time building a light framework of function classes, variables and data, I started testing. After doing the first few tests to check test connectivity, I deleted most of the framework and did one step at a time TDD style, beginning with the Rover. Rover being initiated in the test, and MapController initiated in each Rover. It didn't always go red/green refactor, but tried most of the time.
 
-To complete these challenges you will need to have Node.js installed on your computer. Follow this link and click on the green button to install for Mac or Windows: https://nodejs.org/en/download/ 
+Both rover and MapController are function classes with their own public ( this.something() / this.variable) and private (const function() / const variable) methods and variables.
 
-
+### Assumptions and Considerations: 
+- Rovers are invisible to eachother and can't interact to each other
+- It is expected that movement orders bringing the Rover outside the plateau bounds will throw an error, and not automatically course correct the bot.
 
 ### Testing
 
+I made a range of tests for each script covering parameter validation, commands in right order, correct movement and rotation and checking for movement off the plateau. I used spy on commands that did respons information back, to check that they ran.
 
 
 # Future considerations
 
+I decided to make the two main scripts Rover and MapController as function classes, but could be real Classes in the future. The idea was to keep in open for multible instances of Rovers and future vehicles with a static map to keep an overview.
 
+The Rover and other bots could be a subclass of a Vehicle class. All with their own set of actions like LRM, and future (U)p, (D)own, dig, scan, shoot, rotations in smaller degrees etc.
 
+A CommandCenter class could manage the vehicles and give them orders.
 
-# Future considerations
-
+The MapController could keep track of all the vehicles, check for when vehicles are in same space, maybe add a z-axis for flying/digging bots, as well handle different shaped maps and their boundaries in 2D/3D space.
 
