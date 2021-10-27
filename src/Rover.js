@@ -1,44 +1,56 @@
+const { MapController } = require("./MapController");
+const mapController = new MapController();
+
 function Rover() {
   //console.log("--- NEW ROVER ---");
   this.type = "rover";
   this.mapSize = { x: 0, y: 0 };
   this.position = { x: 0, y: 0 }; //[0, 0];
   this.bearing = "N";
-  this.record = [];
+  this.commandRecords = [];
+
   const bearingsWheel = ["N", "E", "S", "W"];
   const moveWheel = [{ y: 1 }, { x: 1 }, { y: -1 }, { x: -1 }];
 
-  this.commandBot = (command) => {
-    this.record.push(command);
-    //console.log("command[" + this.record.length + "]: " + command);
+  // "5 5", "0 0 N", "MMMMR", "0 4 E", "MMMMR"
 
-    // init
-    if (this.record.length === 1) {
-      this.mapSize.x = command.split(" ")[0];
-      this.mapSize.y = command.split(" ")[1];
-    } else if (this.record.length === 2 || command.indexOf(" ") > -1) {
-      this.position.x = command.split(" ")[0];
-      this.position.y = command.split(" ")[1];
-      this.bearing = command.split(" ")[2];
-      //console.log("    rebase -> " + this.position + " " + this.bearing + " ");
-    } else if (this.record.length > 2) {
-      //console.log("  --> " + command);
-      command.split("").forEach((direction) => this.action(direction));
-      //console.log("results: " + this.output());
-      return this.output();
-    }
+  this.commandInput = (command) => {
+    const commandSection = command.split(" ");
+    if (!validateCommand(command) || commandSection.length > 3) throw new Error("invalid command parameter");
+    this.commandRecords.push(command);
 
-    return null;
+    if (commandSection.length === 2 && this.commandRecords.length === 1) {
+      doCommand("init", commandSection);
+    } else if (commandSection.length === 3 && this.commandRecords.length > 1) {
+      doCommand("placement", commandSection);
+    } else if (commandSection.length === 1 && this.commandRecords.length > 1) {
+      doCommand("move", commandSection);
+    } else throw new Error("unexpect command in wrong order");
+
+    return reportLocationAndBearing();
   };
 
-  this.action = (action) => {
-    //console.log("     " + this.position + " " + this.bearing + "   -> " + action);
-    let bearingIndex = bearingsWheel.findIndex((currentBearing) => this.bearing === currentBearing);
+  const doCommand = (commandType, commandSection) => {
+    if (commandType === "init") {
+      mapController.initMapSize(commandSection[0], commandSection[1]);
+    } else if (commandType === "placement") {
+      this.position.x = commandSection[0];
+      this.position.y = commandSection[1];
+      this.bearing = commandSection[2];
+    } else if (commandType === "move") {
+      commandSection[0].split("").forEach((action) => doAction(action));
+    }
+  };
+
+  const doAction = (action) => {
+    const bearingIndex = bearingsWheel.findIndex((currentBearing) => this.bearing === currentBearing);
 
     if (action === "M") {
-      let axis = Object.keys(moveWheel[bearingIndex])[0];
-      let moveChange = moveWheel[bearingIndex][axis];
+      const axis = Object.keys(moveWheel[bearingIndex])[0];
+      const moveChange = moveWheel[bearingIndex][axis];
       this.position[axis] = Number(this.position[axis]) + moveChange;
+      if (mapController.moveOutOfBounds(this.position.x, this.position.y))
+        throw new Error("Rover moved outside of map area");
     }
     if (action === "L")
       this.bearing = bearingIndex === 0 ? bearingsWheel[bearingsWheel.length - 1] : bearingsWheel[bearingIndex - 1];
@@ -47,12 +59,14 @@ function Rover() {
       this.bearing = bearingIndex === bearingsWheel.length - 1 ? bearingsWheel[0] : bearingsWheel[bearingIndex + 1];
   };
 
-  this.output = () => {
+  const reportLocationAndBearing = () => {
     return this.position.x + " " + this.position.y + " " + this.bearing;
   };
-
-
-  this.validActions = ["M", "L", "R"];
 }
+
+const validateCommand = (command) => {
+  if (command === undefined) return false;
+  return command.replace(/[0-9NESWMLR\ ]+/g, "").length === 0;
+};
 
 module.exports = { Rover };
