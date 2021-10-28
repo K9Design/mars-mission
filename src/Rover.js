@@ -2,17 +2,13 @@ const { MapController } = require("./MapController");
 const mapController = new MapController();
 
 function Rover() {
-  //console.log("--- NEW ROVER ---");
   this.type = "rover";
-  this.mapSize = { x: 0, y: 0 };
-  this.position = { x: 0, y: 0 }; //[0, 0];
+  this.position = { x: 0, y: 0 }; 
   this.bearing = "N";
   this.commandRecords = [];
 
   const bearingsWheel = ["N", "E", "S", "W"];
   const moveWheel = [{ y: 1 }, { x: 1 }, { y: -1 }, { x: -1 }];
-
-  // "5 5", "0 0 N", "MMMMR", "0 4 E", "MMMMR"
 
   this.commandInput = (command) => {
     const commandSection = command.split(" ");
