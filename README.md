@@ -33,6 +33,7 @@ console.log(output) // > 3 1 E
 
 > npm test
 
+# Background
 
 ### Approach: 
 In this project I tried a TDD approach, which went sideways as soon as I had it planned on paper. After spending some time building a light framework of function classes, variables and data, I started testing. After doing the first few tests to check test connectivity, I deleted most of the framework and did one step at a time TDD style, beginning with the Rover. Rover being initiated in the test, and MapController initiated in each Rover. It didn't always go red/green refactor, but tried most of the time.
