@@ -4,24 +4,25 @@ By Hagen L
 A Mars Rover simulation - controlled by only 3 commands.
 
 ### Usage: 
-> const { Rover } = require("./Rover");
-> const bot = new Rover();
+```javascript
+const { Rover } = require("./Rover");
+const bot = new Rover();
 
-> // commands in needed order
-> // first command
-> bot.commandInput("5 5"); // sets the map size maximum x-axis, y-axis. Minimum x-axis and y-axis is 0.
+// commands in needed order
+// first command
+bot.commandInput("5 5"); // sets the map size maximum x-axis, y-axis. Minimum x-axis and y-axis is 0.
 
-> // second command
-> bot.commandInput("1 3 E"); // rover placement. x-axis / y-axis / bearing ((N)orth (E)ast (S)outh (W)est)
->
-> // third command
-> const output = bot.commandInput("MMRMMRMRRM"); // move orders. (M)ove 1 forward in bearing direction. Rotate (L)eft, rotate (R)ight
-> console.log(output) // > 3 1 E 
-> // third command will output the rovers new position
-> . 
-> . // second command and third command can be repeated indefinitely
-> .
+// second command
+bot.commandInput("1 3 E"); // rover placement. x-axis / y-axis / bearing ((N)orth (E)ast (S)outh (W)est)
 
+// third command
+const output = bot.commandInput("MMRMMRMRRM"); // move orders. (M)ove 1 forward in bearing direction. Rotate (L)eft, rotate (R)ight
+console.log(output) // > 3 1 E 
+// third command will output the rovers new position
+. 
+. // second command and third command can be repeated indefinitely
+.
+```
 
 
 ### Approach: 
