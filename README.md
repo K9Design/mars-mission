@@ -3,6 +3,12 @@ By Hagen L
 
 A Mars Rover simulation - controlled by only 3 commands.
 
+### Requirement: 
+
+- Node (stable) v17.0.1
+- eslint v7.32.0
+- jest v25.2.4
+
 ### Usage: 
 ```javascript
 const { Rover } = require("./Rover");
