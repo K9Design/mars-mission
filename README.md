@@ -7,7 +7,7 @@ A Mars Rover simulation - controlled by only 3 commands.
 
 - Node (stable) v17.0.1
 - eslint v7.32.0
-- jest v25.2.4
+- jest v25.2.4 (for testing)
 
 ### Usage: 
 ```javascript
@@ -29,6 +29,9 @@ console.log(output) // > 3 1 E
 . // second command and third command can be repeated indefinitely
 .
 ```
+### Unit Testing: 
+
+> npm test
 
 
 ### Approach: 
