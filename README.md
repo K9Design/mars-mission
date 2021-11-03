@@ -9,7 +9,18 @@ A Mars Rover simulation - controlled by only 3 commands.
 - eslint v7.32.0
 - jest v25.2.4 (for testing)
 
-### Usage: 
+#### Install: 
+To install and run the project:
+[install node](https://nodejs.org/en/download/)
+[install git](https://github.com/git-guides/install-git)
+
+```bash
+git clone https://github.com/K9Design/mars-mission.git
+cd mars-mission
+npm install
+```
+
+#### Usage in javascript: 
 ```javascript
 const { Rover } = require("./Rover");
 const bot = new Rover();
@@ -29,9 +40,12 @@ console.log(output) // > 3 1 E
 . // second command and third command can be repeated indefinitely
 .
 ```
-### Unit Testing: 
+#### Unit Testing: 
+To run the unit test suites:
 
-> npm test
+```bash
+npm test
+```
 
 # Background
 
