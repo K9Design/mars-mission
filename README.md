@@ -11,8 +11,8 @@ A Mars Rover simulation - controlled by only 3 commands.
 
 #### Install: 
 To install and run the project:
-[install node](https://nodejs.org/en/download/)
-[install git](https://github.com/git-guides/install-git)
+- [install node](https://nodejs.org/en/download/)
+- [install git](https://github.com/git-guides/install-git)
 
 ```bash
 git clone https://github.com/K9Design/mars-mission.git
