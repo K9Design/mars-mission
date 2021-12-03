@@ -65,7 +65,7 @@ I made a range of tests for each script covering parameter validation, commands 
 
 # Future considerations
 
-I decided to make the two main scripts Rover and MapController as function classes, but could be real Classes in the future. The idea was to keep it open for multible instances of Rovers and future vehicles with a static map to keep an overview.
+I decided to make the two main scripts Rover and MapController as functional classes, but could be real Classes in the future. The idea was to keep it open for multible instances of Rovers and future vehicles with a static map to keep an overview.
 
 The Rover and other bots could be a subclass of a Vehicle class. All with their own set of actions like LRM, and future (U)p, (D)own, dig, scan, shoot, rotations in smaller degrees etc.
 
