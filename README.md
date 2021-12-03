@@ -1,5 +1,4 @@
 # Rover - Mars Mission
-By Hagen L
 
 A Mars Rover simulation - controlled by only 3 commands. Simulating low bandwidth control of a robot on mars.
 
